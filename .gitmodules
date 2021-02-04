@@ -1,0 +1,3 @@
+[submodule "external/quotables"]
+	path = external/quotables
+	url = git@github.com:alvations/Quotables.git
