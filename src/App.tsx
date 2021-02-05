@@ -1,18 +1,27 @@
-import React from 'react';
-import { createStyles, makeStyles } from '@material-ui/core';
+import React, { useState } from 'react';
+import { createStyles, makeStyles, Theme, Typography } from '@material-ui/core';
 import quotes from './quotes.json';
-import Typer from './Typer';
+import Typer, { ParagraphCompleted } from './Typer';
+import Statistics from './Statistics';
+import StatisticsTable from './StatisticsTable';
 
 interface Quote {
   author: string
   quote: string
 }
 
-const styles = createStyles({
+const styles = ({spacing}: Theme) => createStyles({
   root: {
     maxWidth: 512,
     marginLeft: 'auto',
-    marginRight: 'auto'
+    marginRight: 'auto',
+    paddingTop: spacing(6)
+  },
+  title: {
+    marginBottom: spacing(6)
+  },
+  typer: {
+    marginBottom: spacing(4)
   }
 });
 
@@ -22,9 +31,23 @@ const getQuote: () => Quote = () => quotes[Math.floor(Math.random() * quotes.len
 
 const App: React.FC = () => {
   const classes = useStyles();
+  const [stats, setStats] = useState<Array<Statistics>>([]);
+
+  const handleParagraphCompleted = (event: ParagraphCompleted) => {
+    setStats([event.stats, ...stats]);
+  }
 
   return <div className={classes.root}>
-    <Typer getParagraph={() => getQuote().quote} />
+    <div className={classes.typer}>
+      <Typography className={classes.title} variant="h2">
+        <b>Typer</b> typing trainer
+      </Typography>
+      <Typer
+        getParagraph={() => getQuote().quote}
+        onParagraphCompleted={handleParagraphCompleted}
+      />
+    </div>
+    {stats.length > 0 && <StatisticsTable stats={stats} />}
   </div>
 }
 

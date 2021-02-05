@@ -1,5 +1,5 @@
 import React, { KeyboardEvent, useState, useRef, useLayoutEffect } from 'react';
-import { Box, createStyles, makeStyles, Theme, Typography } from '@material-ui/core';
+import { Box, createStyles, makeStyles, Theme, Typography, WithStyles } from '@material-ui/core';
 import TypeParapraph, { commonPosition } from './TypeParapraph';
 import TypeField from './TypeField';
 import Statistics from './Statistics';
@@ -17,7 +17,7 @@ const styles = ({spacing}: Theme) => createStyles({
   text: {
     flexGrow: 1,
     overflowY: 'scroll',
-    marginBottom: spacing(2)
+    marginBottom: spacing(3)
   },
   input: {
     width: '100%'
@@ -26,7 +26,7 @@ const styles = ({spacing}: Theme) => createStyles({
 
 const useStyles = makeStyles(styles);
 
-interface ParagraphCompleted {
+export interface ParagraphCompleted {
   stats: Statistics
   text: string
 }
