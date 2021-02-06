@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { createStyles, makeStyles, Theme, Typography } from '@material-ui/core';
 import quotes from './quotes.json';
 import Typer, { ParagraphCompleted } from './Typer';
@@ -33,8 +33,17 @@ const App: React.FC = () => {
   const classes = useStyles();
   const [stats, setStats] = useState<Array<Statistics>>([]);
 
+  useEffect(() => {
+    const statsString = window.localStorage.getItem('stats');
+    if (statsString) {
+      setStats(JSON.parse(statsString));
+    }
+  }, [setStats])
+
   const handleParagraphCompleted = (event: ParagraphCompleted) => {
-    setStats([event.stats, ...stats]);
+    const newStats = [event.stats, ...stats].slice(0, 10);
+    setStats(newStats);
+    window.localStorage.setItem('stats', JSON.stringify(newStats));
   }
 
   return <div className={classes.root}>
