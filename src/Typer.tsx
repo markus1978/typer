@@ -1,5 +1,5 @@
 import React, { KeyboardEvent, useState, useRef, useLayoutEffect } from 'react';
-import { Box, createStyles, makeStyles, Theme, Typography, WithStyles } from '@material-ui/core';
+import { Box, createStyles, makeStyles, Theme, Typography } from '@material-ui/core';
 import TypeParapraph, { commonPosition } from './TypeParapraph';
 import TypeField from './TypeField';
 import Statistics from './Statistics';

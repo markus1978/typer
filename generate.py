@@ -3,6 +3,7 @@ import sys
 import json
 
 size = int(sys.argv[1])
+random.seed(0)
 
 with open('external/quotables/author-quote.txt', 'rt') as f:
     lines = f.readlines()
