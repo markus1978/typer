@@ -1,3 +1,17 @@
+# Getting started with typer
+
+Download quotes and conver them to json first:
+
+```sh
+curl https://raw.githubusercontent.com/alvations/Quotables/master/author-quote.txt -o external/quotables/author-quote.txt
+docker run --rm -v `pwd`:/home python bash -c "cd home && python generate.py 100"
+```
+
+Start the dev server with the app:
+```sh
+yarn run start
+```
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
